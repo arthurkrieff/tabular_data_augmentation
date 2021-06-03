@@ -1,2 +1,2 @@
-install-packages:
-    pip install -e .
+install-package:
+	pip install -e .
