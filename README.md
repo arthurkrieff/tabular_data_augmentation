@@ -13,7 +13,7 @@ More specifically, I increased the size of the minority classes using the follow
 
 To launch the project, you will need to create two different environments:
 - **Environment n°1**: works with all algorithms except for TGAN, therefore only the notebook `noTGAN.ipynb` will execute
- ```  
+ ```bash
  # Create virtual environment
  python3 -m venv notgan_env
 # Activate the virtual environment
@@ -23,7 +23,7 @@ pip install -r requirements_notgan.txt
  ```
 
 - **Environment n°2**: specific environment for the TGAN algorithm, therefore only the notebook `TGAN.ipynb` will execute
- ```  
+ ```bash
  # Create virtual environment
  python3 -m venv tgan_env
 # Activate the virtual environment
@@ -31,6 +31,11 @@ source tgan_env/bin/activate
 # Install dependencies
 pip install -r requirements_tgan.txt
  ```
+
+Finally:
+```bash
+pip install -e . 
+```
 
 ## Sources
 
