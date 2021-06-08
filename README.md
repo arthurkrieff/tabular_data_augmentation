@@ -2,7 +2,7 @@
 
 Part of my research paper on tabular data augmentation, I applied different data augmentation algorithms on four different datasets in an attempt to increase the performance of classification algorithms. 
 
-More specifically, I increased the size of the minority classes only using the following algorithms:
+More specifically, I increased the size of the minority classes using the following algorithms:
 - SMOTE
 - Gaussian Copula
 - Variational Autoencoder
@@ -34,7 +34,15 @@ pip install -r requirements_tgan.txt
 
 ## Sources
 
-To carry out this project, the following sources were used
+To carry out this project, the following sources were used:
+
+#### Datasets
+- Contraceptive Method Choice: https://archive.ics.uci.edu/ml/datasets/Contraceptive+Method+Choice
+- Yeast: https://archive.ics.uci.edu/ml/datasets/Yeast
+- Arrhythmia: http://archive.ics.uci.edu/ml/datasets/Arrhythmia
+- Covertype: http://archive.ics.uci.edu/ml/datasets/Covertype
+
+#### Githubs
 - https://github.com/sdv-dev/TGAN
 - https://github.com/sdv-dev/SDV
 - https://github.com/sdv-dev/Copulas
