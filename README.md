@@ -9,7 +9,7 @@ More specifically, I increased the size of the minority classes only using the f
 - CTGAN
 - TGAN
 
-## Launch Project
+## Launch Project
 
 To launch the project, you will need to create two different environments:
 - **Environment n°1**: works with all algorithms except for TGAN, therefore only the notebook `noTGAN.ipynb` will execute
