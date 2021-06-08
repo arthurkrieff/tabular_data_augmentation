@@ -5,10 +5,13 @@ from tgan.model import TGANModel
 import tensorflow as tf
 
 class TGAN(BaseDataAugmentation):
-    def __init__(self, df, categorical, target):
+    def __init__(self, df:pd.DataFrame, categorical:list, target:str) -> None:
         super().__init__(df, categorical, target)
 
-    def fit(self):
+    def fit(self) -> None:
+        """
+        Function to fit the TGAN model
+        """
         self.df[self.categorical] = self.df[self.categorical].astype(str)
         continuous_columns = []
         self.models.append(TGANModel(continuous_columns, max_epoch=1))
@@ -18,7 +21,11 @@ class TGAN(BaseDataAugmentation):
         end = time.time()
         print("time:", end-beg)
 
-    def generate(self):
+    def generate(self) -> pd.DataFrame:
+        """
+        Function to generate new data samples 
+        Output: dataframe with generated data
+        """
         generated_data = pd.DataFrame()
         initial_size = self.df.shape[0]
         new_data = self.models[0].sample(initial_size*10)

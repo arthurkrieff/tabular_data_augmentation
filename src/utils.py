@@ -1,3 +1,4 @@
+from typing import Any
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -5,7 +6,11 @@ import scikitplot as skplt
 import matplotlib.pyplot as plt
 
 
-def one_hot_encoding(df, columns):
+def one_hot_encoding(df: pd.DataFrame, columns: list) -> pd.DataFrame:
+    """
+    Function to one hot encode the specificed columns of a dataframe
+    Output: dataframe one hot encoded
+    """
     new_df = df.copy()
     if columns == []:
         return df
@@ -19,7 +24,10 @@ def one_hot_encoding(df, columns):
         return new_df
     
 
-def plotROCCurves(y_test, X_test, algo_classify, algo_augment_name:str):
+def plotROCCurves(y_test: np.ndarray, X_test:pd.DataFrame, algo_classify: Any, algo_augment_name:str) -> None:
+    """
+    Function to plot the ROC Curves 
+    """
     plt.figure(figsize=(20, 10))
     skplt.metrics.plot_roc_curve(y_test, algo_classify.predict_proba(X_test), figsize=(20, 10))
     algo_classify_name = type(algo_classify).__name__

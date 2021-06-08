@@ -3,7 +3,13 @@ import numpy as np
 
 
 class BaseDataAugmentation:
-    def __init__(self, df, categorical, target):
+    def __init__(self, df:pd.DataFrame, categorical: list, target:str) -> None:
+        """
+        Input:
+            - df: pd.DataFrame
+            - categorical: list of column names that are categorical
+            - target: string name of the target column
+        """
         self.categorical = categorical
         self.df = df
         self.df.columns = [str(i) for i in df.columns]
@@ -20,10 +26,14 @@ class BaseDataAugmentation:
         self.df[self.continuous] = self.df[self.continuous].astype(float)
         self.df[self.target] = self.df[self.target].astype(str)
 
-    def fit(self):
+    def fit(self) -> None:
         pass
 
-    def generate(self):
+    def generate(self) -> pd.DataFrame:
+        """
+        Function that computes for each class the number of samples to generate and generate them
+        Output: generated data concatenated for all the classes
+        """
         generated_data = pd.DataFrame()
         majority_class = self.get_majority_class()
         majority_size = self.df[self.df[self.target] == majority_class].shape[0]
@@ -35,7 +45,11 @@ class BaseDataAugmentation:
                 generated_data = pd.concat([generated_data, new_data])
         return generated_data
 
-    def augment(self):
+    def augment(self) -> pd.DataFrame:
+        """
+        Function that concatenate the real and generated data, and applies some cleaning
+        Output: augmented training set
+        """
         generated_data = self.generate()
         generated_data.columns = self.columns
         self.df.columns = self.columns
@@ -51,7 +65,11 @@ class BaseDataAugmentation:
         augmented_data = augmented_data.replace([np.inf, -np.inf], np.nan).dropna()
         return augmented_data
 
-    def get_majority_class(self):
+    def get_majority_class(self) -> str:
+        """
+        Helper function to get the majority class
+        Output: (str) the name of the majority class
+        """
         max_size = 0
         majority_class = self.classes[0]
         for classe in self.classes:
@@ -61,5 +79,9 @@ class BaseDataAugmentation:
                 majority_class = classe
         return majority_class
 
-    def get_models(self):
+    def get_models(self) -> list:
+        """
+        Function to get the models for each class
+        Output: list of models
+        """
         return self.models

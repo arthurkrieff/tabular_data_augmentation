@@ -7,10 +7,13 @@ from src.base import BaseDataAugmentation
 
 
 class gaussian_copula(BaseDataAugmentation):
-    def __init__(self, df, categorical, target):
+    def __init__(self, df: pd.DataFrame, categorical: list, target: str) -> None:
         super().__init__(df, categorical, target)
 
-    def fit(self):
+    def fit(self) -> None:
+        """
+        Function to fit the Gaussain Copula model to each class
+        """
         for classe in self.classes:
             self.models.append(GaussianCopula())
         beg = time.time()
@@ -21,10 +24,13 @@ class gaussian_copula(BaseDataAugmentation):
 
 
 class variational_autoencoder(BaseDataAugmentation):
-    def __init__(self, df, categorical, target):
+    def __init__(self, df: pd.DataFrame, categorical: list, target: str) -> None:
         super().__init__(df, categorical, target)
 
-    def fit(self):
+    def fit(self) -> None:
+        """
+        Function to fit the TVAE model to each class
+        """
         for classe in self.classes:
             self.models.append(TVAE())
         beg = time.time()
@@ -35,10 +41,13 @@ class variational_autoencoder(BaseDataAugmentation):
 
 
 class ctgan_model(BaseDataAugmentation):
-    def __init__(self, df, categorical, target):
+    def __init__(self, df: pd.DataFrame, categorical: list, target: str) -> None:
         super().__init__(df, categorical, target)
 
-    def fit(self):
+    def fit(self) -> None:
+        """
+        Function to fit the CTGAN model to each class
+        """
         for classe in self.classes:
             self.models.append(CTGAN())
         beg = time.time()
